@@ -18,6 +18,16 @@ const openNav = () => {
 const closeNav = () => {
   document.getElementById("mySidenav").style.width = "0";
 };
+
+const openSearchBox = () => {
+  let inputArea = document.getElementById("input-area")
+  if(inputArea.style.display === "inline") {
+    inputArea.style.display = "none"
+  } else {
+    inputArea.style.display ="inline"
+  }
+};
+
 const getLatestNews = async () => { //비동기 처리, 기존 동기적 언어인 js에서 await을 사용하려면 비동기처리를 선언하는 async를 같이 써주어야 함.
   let url = new URL(
     `https://api.newscatcherapi.com/v2/latest_headlines?countries=KR&topic=sport&page_size=10`

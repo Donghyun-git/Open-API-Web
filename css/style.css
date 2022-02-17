@@ -4,10 +4,36 @@
   flex-direction: column;
 }
 
+.header > div > span{
+  display:none;
+}
 .header .fa-bars {
-  padding: 1em;
+  padding: 8px 9px 8px;
+  margin-top: 5px;
   font-size: 20px;
   display: none;
+  cursor: pointer;
+}
+
+.header .fa-bars:hover {
+  background-color: #ddc9a8;
+}
+
+.header .fa-search {
+  padding: 8px 9px 8px;
+  margin-top: 5px;
+  font-size: 20px;
+  display: inline;
+  cursor: pointer;
+}
+
+.header .fa-search:hover {
+  background-color: #ddc9a8;
+}
+
+.search-button {
+  background-color: #ddc9a8;
+  border-radius: 10%;
 }
 
 .head-line {
@@ -98,6 +124,6 @@
   }
 
   .header .fa-bars {
-    display: block;
+    display: inline-block;
   }
 }
