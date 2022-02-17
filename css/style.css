@@ -119,6 +119,9 @@
 
 /* 미디어 쿼리 */
 @media(max-width: 800px) {
+  body button {
+    color: black;
+  }
   .menus {
     display: none;
   }
