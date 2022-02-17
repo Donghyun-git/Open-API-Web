@@ -1,14 +1,15 @@
-
 .header {
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
+
 .header .fa-bars {
   padding: 1em;
   font-size: 20px;
   display: none;
 }
+
 .head-line {
   margin-top: 1em;
   display: flex;
@@ -18,7 +19,6 @@
 .head-line svg {
   width: 400px;
 }
-
 
 .menus {
   margin-top: 1em;
@@ -61,12 +61,15 @@
   overflow: hidden;
   transition: 0.5s;
   padding-top: 60px;
+  color: black;
 }
+
 .side-menu .side-menu-list {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .side-menu .side-menu-list button {
   margin: 5px;
   border: none;
@@ -83,14 +86,18 @@
   position: absolute;
   top: 0;
   right: 25px;
-  border:none;
+  border: none;
   background: none;
   font-size: 30px;
 }
 
-
 /* 미디어 쿼리 */
-@media(max-width: 800px){
-  .menus { display: none; }
-  .header .fa-bars { display: block;}
+@media(max-width: 800px) {
+  .menus {
+    display: none;
+  }
+
+  .header .fa-bars {
+    display: block;
+  }
 }
