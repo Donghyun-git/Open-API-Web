@@ -43,6 +43,29 @@ const getLatestNews = async () => { //비동기 처리, 기존 동기적 언어�
   console.log(response)
   news = data.articles
   console.log(news)
+
+  render();
 };
 
 getLatestNews();
+
+function render(){
+  let resultHTML='';
+  for(let i=0; i<news.length; i++){
+    resultHTML += `<div class="row news">
+            <div class="col-lg-4">
+              <img src=${news[i].media} alt="이미지">
+            </div>
+            <div class="col-lg-8">
+              <h2>${news[i].title}</h2>
+              <p>
+                ${news[i].summary}
+              </p>
+              <div class="">
+                ${news[i].clean_url}
+              </div>
+            </div>
+          </div>`;
+  }
+  document.getElementById("news-contents").innerHTML = resultHTML;
+}

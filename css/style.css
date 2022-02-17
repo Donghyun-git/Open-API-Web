@@ -23,7 +23,7 @@
   padding: 8px 9px 8px;
   margin-top: 5px;
   font-size: 20px;
-  display: inline;
+  display: inline-block;
   cursor: pointer;
 }
 
@@ -79,7 +79,7 @@
 .side-menu {
   height: 100%;
   width: 0;
-  position: fixed;
+  position: fixed;  /* 화면이 바뀌어도 고정된 위치에서 사용할 때 씀 */
   z-index: 1;
   background-color: burlywood;
   top: 0;
