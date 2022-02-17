@@ -1,5 +1,14 @@
 
-
+.header {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.header .fa-bars {
+  padding: 1em;
+  font-size: 20px;
+  display: none;
+}
 .head-line {
   margin-top: 1em;
   display: flex;
@@ -46,9 +55,10 @@
   width: 0;
   position: fixed;
   z-index: 1;
+  background-color: burlywood;
   top: 0;
   left: 0;
-  overflow-x: hidden;
+  overflow: hidden;
   transition: 0.5s;
   padding-top: 60px;
 }
@@ -73,4 +83,14 @@
   position: absolute;
   top: 0;
   right: 25px;
+  border:none;
+  background: none;
+  font-size: 30px;
+}
+
+
+/* 미디어 쿼리 */
+@media(max-width: 800px){
+  .menus { display: none; }
+  .header .fa-bars { display: block;}
 }
