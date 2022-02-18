@@ -69,6 +69,22 @@
   max-width: 100%;
   max-height: 250px;
 }
+.row .col-lg-8 p{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+}
+
+.row .col-lg-8 a {
+  text-decoration: none;
+  color: #000;
+}
+
+.row .col-lg-8 a:hover {
+  color: #7d560a;
+}
 
 .news {
   border-bottom: 2px solid #000;

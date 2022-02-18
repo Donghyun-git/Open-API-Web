@@ -57,9 +57,9 @@ function render(){
               <img src=${news[i].media} alt="이미지">
             </div>
             <div class="col-lg-8">
-              <h2>${news[i].title}</h2>
+              <a href="${news[i].link}"><h2>${news[i].title}</h2></a>
               <p>
-                ${news[i].summary}
+              ${news[i].summary}
               </p>
               <div class="">
                 ${news[i].clean_url}
