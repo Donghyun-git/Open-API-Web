@@ -49,24 +49,49 @@ const getLatestNews = async () => { //비동기 처리, 기존 동기적 언어�
 
 getLatestNews();
 
-function render() {
+const render = () => {
   let resultHTML = '';
-  for (let i = 0; i < news.length; i++) {
-    resultHTML += `<div class="row news">
+  resultHTML = news.map((news)=>{
+    return `<div class="row news">
             <div class="col-lg-4">
-              <img src=${news[i].media} alt="이미지">
+              <img src=${news.media} alt="이미지">
             </div>
             <div class="col-lg-8">
-              <a href="${news[i].link}"><h2>${news[i].title}</h2></a>
+              <a href="${news.link}"><h2>${news.title}</h2></a>
               <p>
-              ${news[i].summary}
+              ${news.summary}
               </p>
               <div>
-                <span>출처</span>${news[i].clean_url} <br>
-                ${news[i].published_date}
+                <span>출처</span>${news.clean_url} <br>
+                ${news.published_date}
               </div>
             </div>
           </div>`;
-  }
+  }).join('');
+
   document.getElementById("news-contents").innerHTML = resultHTML;
 }
+
+  /*
+  function render() {
+    let resultHTML = '';
+    for (let i = 0; i < news.length; i++) {
+      resultHTML += `<div class="row news">
+              <div class="col-lg-4">
+                <img src=${news[i].media} alt="이미지">
+              </div>
+              <div class="col-lg-8">
+                <a href="${news[i].link}"><h2>${news[i].title}</h2></a>
+                <p>
+                ${news[i].summary}
+                </p>
+                <div>
+                  <span>출처</span>${news[i].clean_url} <br>
+                  ${news[i].published_date}
+                </div>
+              </div>
+            </div>`;
+    }
+    document.getElementById("news-contents").innerHTML = resultHTML;
+  }
+  */
