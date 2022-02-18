@@ -4,9 +4,10 @@
   flex-direction: column;
 }
 
-.header > div > span{
-  display:none;
+.header>div>span {
+  display: none;
 }
+
 .header .fa-bars {
   padding: 8px 9px 8px;
   margin-top: 5px;
@@ -69,7 +70,8 @@
   max-width: 100%;
   max-height: 250px;
 }
-.row .col-lg-8 p{
+
+.row .col-lg-8 p {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -86,6 +88,11 @@
   color: #7d560a;
 }
 
+.row .col-lg-8 span {
+  padding-right: 1em;
+  font-weight: bold;
+}
+
 .news {
   border-bottom: 2px solid #000;
   padding-top: 1em;
@@ -95,7 +102,8 @@
 .side-menu {
   height: 100%;
   width: 0;
-  position: fixed;  /* 화면이 바뀌어도 고정된 위치에서 사용할 때 씀 */
+  position: fixed;
+  /* 화면이 바뀌어도 고정된 위치에서 사용할 때 씀 */
   z-index: 1;
   background-color: burlywood;
   top: 0;
@@ -138,6 +146,7 @@
   body button {
     color: black;
   }
+
   .menus {
     display: none;
   }

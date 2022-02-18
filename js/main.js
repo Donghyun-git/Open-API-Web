@@ -21,10 +21,10 @@ const closeNav = () => {
 
 const openSearchBox = () => {
   let inputArea = document.getElementById("input-area")
-  if(inputArea.style.display === "inline") {
+  if (inputArea.style.display === "inline") {
     inputArea.style.display = "none"
   } else {
-    inputArea.style.display ="inline"
+    inputArea.style.display = "inline"
   }
 };
 
@@ -49,9 +49,9 @@ const getLatestNews = async () => { //비동기 처리, 기존 동기적 언어�
 
 getLatestNews();
 
-function render(){
-  let resultHTML='';
-  for(let i=0; i<news.length; i++){
+function render() {
+  let resultHTML = '';
+  for (let i = 0; i < news.length; i++) {
     resultHTML += `<div class="row news">
             <div class="col-lg-4">
               <img src=${news[i].media} alt="이미지">
@@ -61,8 +61,9 @@ function render(){
               <p>
               ${news[i].summary}
               </p>
-              <div class="">
-                ${news[i].clean_url}
+              <div>
+                <span>출처</span>${news[i].clean_url} <br>
+                ${news[i].published_date}
               </div>
             </div>
           </div>`;
