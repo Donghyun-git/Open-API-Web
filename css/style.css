@@ -93,6 +93,10 @@
   font-weight: bold;
 }
 
+.row .col-lg-8 strong {
+  font-size: 13px;
+}
+
 .news {
   border-bottom: 2px solid #000;
   padding-top: 1em;
