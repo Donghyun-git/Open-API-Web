@@ -12,9 +12,14 @@
 let news = [];
 let menus = document.querySelectorAll(".menus button");
 let sidemenus = document.querySelectorAll(".side-menu-list button");
+let searchButton = document.getElementById("search-button");
+let keyword = document.getElementById("search-input");
+
+
 
 menus.forEach((menu)=> menu.addEventListener("click", (event)=>getNewsByTopic(event)));
 sidemenus.forEach((sidemenu) => sidemenu.addEventListener("click", (event) => getNewsByTopic(event)));
+
 
 
 const openNav = () => {
@@ -58,7 +63,7 @@ getLatestNews();
 
 const getNewsByTopic = async (event) => {
   console.log("클릭됨", event.target.textContent);
-  let topic = event.target.textContent.toLowerCase()
+  let topic = event.target.textContent.toLowerCase();
   let url = new URL(`https://api.newscatcherapi.com/v2/latest_headlines?countries=KR&page_size=10&topic=${topic}`
   );
   let header = new Headers({
@@ -69,10 +74,31 @@ const getNewsByTopic = async (event) => {
   });
   let data = await response.json();
   news = data.articles
-  render()
+  render();
 
   console.log(data);
 };
+
+const getNewsByKeyword = async ()=>{
+  //1. 검색 키워드 읽어오기
+  //2. url에 검색 키워드 붙히기
+  //3. 헤더준비
+  //4. url 부르기
+  //5. 데이터 가져오기
+  //6. 데이터 보여주기
+
+  let keyword = document.getElementById("search-input").value;
+  let url = new URL(`https://api.newscatcherapi.com/v2/search?q=${keyword}&page_size=10`
+  );
+  let header = new Headers({'x-api-key': 'G4clsHrkRRsNTe19Gs1UhM3XsKLlkg_8LgqJFAmf5bw'
+  });
+  let response = await fetch(url,{
+    headers: header
+  });
+  let data = await response.json();
+  news = data.articles
+  render();
+}
 
 const render = () => {
   let resultHTML = '';
@@ -81,7 +107,7 @@ const render = () => {
 
     return `<div class="row news">
             <div class="col-lg-4">
-              <img src=${item.media == null || item.media == "" ? "https://www.google.com/url?sa=i&url=http%3A%2F%2Fhanshinchurch.org%2F&psig=AOvVaw0H9YGJZW5XAwkcigA_fUz9&ust=1645287548121000&source=images&cd=vfe&ved=0CAgQjRxqFwoTCLDZr4DUifYCFQAAAAAdAAAAABAD" : item.media} alt="이미지">
+            <img src="${item.media == null || item.media == "" ? "img/none-img.jpg" : item.media}">
             </div>
             <div class="col-lg-8">
               <a href="${item.link}"><h2>${item.title}</h2></a>
@@ -95,12 +121,19 @@ const render = () => {
               </div>
             </div>
           </div>`;
+    }).join('');
+  };
+      document.getElementById("news-contents").innerHTML = resultHTML;
+};
 
-  }).join('');
-}
 
-  document.getElementById("news-contents").innerHTML = resultHTML;
-}
+
+searchButton.addEventListener("click", getNewsByKeyword);
+keyword.addEventListener("keyup", (event)=>{
+  if(event.keyCode===13){
+    getNewsByKeyword();
+  }
+})
 
   /*
   function render() {
