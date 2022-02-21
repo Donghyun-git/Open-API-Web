@@ -14,7 +14,7 @@ let menus = document.querySelectorAll(".menus button");
 let sidemenus = document.querySelectorAll(".side-menu-list button");
 let searchButton = document.getElementById("search-button");
 let keyword = document.getElementById("search-input");
-
+let url;
 
 
 menus.forEach((menu)=> menu.addEventListener("click", (event)=>getNewsByTopic(event)));
@@ -39,10 +39,9 @@ const openSearchBox = () => {
   }
 };
 
-const getLatestNews = async () => { //비동기 처리, 기존 동기적 언어인 js에서 await을 사용하려면 비동기처리를 선언하는 async를 같이 써주어야 함.
-  let url = new URL(
-    `https://api.newscatcherapi.com/v2/latest_headlines?countries=KR&page_size=10`
-  );
+//각 함수에서 필요한 url을 만든다.
+//api 호출 함수를 부른다.
+const getNews = async () => {
   let header = new Headers({
     'x-api-key': 'G4clsHrkRRsNTe19Gs1UhM3XsKLlkg_8LgqJFAmf5bw'
   });
@@ -56,6 +55,12 @@ const getLatestNews = async () => { //비동기 처리, 기존 동기적 언어�
   console.log(news)
 
   render();
+}
+const getLatestNews = async () => { //비동기 처리, 기존 동기적 언어인 js에서 await을 사용하려면 비동기처리를 선언하는 async를 같이 써주어야 함.
+   url = new URL(
+    `https://api.newscatcherapi.com/v2/latest_headlines?countries=KR&page_size=10`
+  );
+  getNews();
 };
 
 getLatestNews();
@@ -64,19 +69,9 @@ getLatestNews();
 const getNewsByTopic = async (event) => {
   console.log("클릭됨", event.target.textContent);
   let topic = event.target.textContent.toLowerCase();
-  let url = new URL(`https://api.newscatcherapi.com/v2/latest_headlines?countries=KR&page_size=10&topic=${topic}`
+  url = new URL(`https://api.newscatcherapi.com/v2/latest_headlines?countries=KR&page_size=10&topic=${topic}`
   );
-  let header = new Headers({
-      'x-api-key': 'G4clsHrkRRsNTe19Gs1UhM3XsKLlkg_8LgqJFAmf5bw'
-  });
-  let response = await fetch(url, {
-    headers: header
-  });
-  let data = await response.json();
-  news = data.articles
-  render();
-
-  console.log(data);
+  getNews();
 };
 
 const getNewsByKeyword = async ()=>{
@@ -88,16 +83,9 @@ const getNewsByKeyword = async ()=>{
   //6. 데이터 보여주기
 
   let keyword = document.getElementById("search-input").value;
-  let url = new URL(`https://api.newscatcherapi.com/v2/search?q=${keyword}&page_size=10`
+  url = new URL(`https://api.newscatcherapi.com/v2/search?q=${keyword}&page_size=10`
   );
-  let header = new Headers({'x-api-key': 'G4clsHrkRRsNTe19Gs1UhM3XsKLlkg_8LgqJFAmf5bw'
-  });
-  let response = await fetch(url,{
-    headers: header
-  });
-  let data = await response.json();
-  news = data.articles
-  render();
+  getNews();
 }
 
 const render = () => {
