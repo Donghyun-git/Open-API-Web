@@ -145,6 +145,12 @@
   font-size: 30px;
 }
 
+/* 에러 메세지 출력 */
+.alert-danger {
+  text-align: center;
+  font-size: 25px;
+}
+
 /* 미디어 쿼리 */
 @media(max-width: 800px) {
   body button {

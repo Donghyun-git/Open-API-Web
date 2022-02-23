@@ -15,6 +15,7 @@ let sidemenus = document.querySelectorAll(".side-menu-list button");
 let searchButton = document.getElementById("search-button");
 let keyword = document.getElementById("search-input");
 let url;
+let html = '';
 
 
 menus.forEach((menu)=> menu.addEventListener("click", (event)=>getNewsByTopic(event)));
@@ -41,8 +42,10 @@ const openSearchBox = () => {
 
 //각 함수에서 필요한 url을 만든다.
 //api 호출 함수를 부른다.
+
 const getNews = async () => {
-  let header = new Headers({
+  try {
+    let header = new Headers({
     'x-api-key': 'G4clsHrkRRsNTe19Gs1UhM3XsKLlkg_8LgqJFAmf5bw'
   });
 
@@ -55,7 +58,15 @@ const getNews = async () => {
   console.log(news)
 
   render();
+
+} catch(error){
+  html = `<div class="alert alert-danger" role="alert">
+  뉴스가 존재하지 않습니다!
+  </div>`
+  document.getElementById("news-contents").innerHTML = html;
+ }
 }
+
 const getLatestNews = async () => { //비동기 처리, 기존 동기적 언어인 js에서 await을 사용하려면 비동기처리를 선언하는 async를 같이 써주어야 함.
    url = new URL(
     `https://api.newscatcherapi.com/v2/latest_headlines?countries=KR&page_size=10`
@@ -90,7 +101,7 @@ const getNewsByKeyword = async ()=>{
 
 const render = () => {
   let resultHTML = '';
-  if(news != 'undeined' && news != null){
+
     resultHTML = news.map((item)=>{
 
     return `<div class="row news">
@@ -110,7 +121,7 @@ const render = () => {
             </div>
           </div>`;
     }).join('');
-  };
+
       document.getElementById("news-contents").innerHTML = resultHTML;
 };
 
