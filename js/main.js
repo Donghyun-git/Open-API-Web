@@ -10,6 +10,8 @@
 //}
 
 let news = [];
+let page = 1;
+let total_page = 0;
 let menus = document.querySelectorAll(".menus button");
 let sidemenus = document.querySelectorAll(".side-menu-list button");
 let searchButton = document.getElementById("search-button");
@@ -58,9 +60,12 @@ const getNews = async () => {
       if (data.total_hits == 0) {
         throw new Error("No match new here!")
       }
-      news = data.articles
+      news = data.articles;
+      total_pages = data.total_pages;
+      page = data.page;
       console.log(news)
       render();
+      pagination();
     } else {
       throw new Error(data.message)
     }
@@ -132,6 +137,25 @@ const errorRender = (message) => {
     ${message}
 </div>`
   document.getElementById("news-contents").innerHTML = errorHTML;
+}
+
+const pagination = () => {
+    let paginationHTML = '';
+    //total _page
+    //page
+    //page group
+    let pageGroup = Math.ceil(page/5);
+    //last
+    let last = pageGroup * 5;
+    //first
+    let first = last - 4;
+    //first~last 페이지 프린트
+
+    for(let i=first; i<=last; i++){
+      paginationHTML += `<li class="page-item"><a class="page-link" href="#">${i}</a></li>`
+    }
+
+    document.querySelector(".pagination").innerHTML = paginationHTML;
 }
 
 
